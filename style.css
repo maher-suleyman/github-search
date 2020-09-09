@@ -1,0 +1,37 @@
+#main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#github-container {
+  display: flex;
+}
+
+ul {
+  list-style: none;
+  list-style-type: square;
+}
+
+.circle_li {
+  list-style-type: circle;
+}
+
+.none_li {
+  list-style-type: none;
+}
+
+button {
+  font-weight: bold;
+  color: rgb(160, 47, 132);
+  width: 75px;
+  height: 20px;
+}
+
+button:focus {
+      background: #ea4fff4d;
+}
+
+button:focus {
+      background: #449970;
+}
