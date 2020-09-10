@@ -1,10 +1,9 @@
 // function to create a list of users
-function createUsersList (json) {
-
-  json.items.forEach( user => {
-    
+function createUsersList(json) {
+  json.items.forEach((user) => {
     const result = document.createElement("h3");
-    const userContainer = document.createElement("div");result
+    const userContainer = document.createElement("div");
+    result;
     userContainer.setAttribute("class", "userContainer");
     const userInfoContainer = document.createElement("div");
     userInfoContainer.setAttribute("class", "userInfoContainer");
@@ -42,7 +41,7 @@ function createUsersList (json) {
 
     userReposBtn.addEventListener("click", () => {
       getUserRepos(user.login, user.repos_url);
-    })
+    });
 
     userTitle.innerHTML = user.login;
     userAvatar.setAttribute("src", `${user.avatar_url}`);
@@ -59,9 +58,7 @@ function createUsersList (json) {
     searchResultUL.appendChild(userContainer);
     console.log("result", result);
   });
-
 }
-
 
 // function to show a list of user's repos
 function getUserRepos(userTitle, reposURL) {
@@ -79,7 +76,7 @@ function getUserRepos(userTitle, reposURL) {
         userReposList.innerHTML = `<h3>This user has NO repos!</h3>`;
       } else {
         const reposArray = [];
-        json.forEach( repo => {
+        json.forEach((repo) => {
           const repoItem = document.createElement("li");
           repoItem.innerHTML = repo.name;
           userReposList.appendChild(repoItem);
@@ -88,8 +85,8 @@ function getUserRepos(userTitle, reposURL) {
     });
 }
 
-// fetching users data of GitHub website 
-document.getElementById("github-form").addEventListener("submit", function(e){
+// fetching users data of GitHub website
+document.getElementById("github-form").addEventListener("submit", function (e) {
   e.preventDefault();
 
   // clearing previous search results
@@ -100,17 +97,14 @@ document.getElementById("github-form").addEventListener("submit", function(e){
   let url = "https://api.github.com/search/users?q=" + search;
 
   fetch(url)
-  .then(function(response) {
-    return response.json();})
-  .then( json => {
-    createUsersList(json);
-  });
-
+    .then(function (response) {
+      return response.json();
+    })
+    .then((json) => {
+      createUsersList(json);
+    });
 });
 
-
-
-window.onload = function() {
+window.onload = function () {
   console.log("Page loaded!");
 };
-
