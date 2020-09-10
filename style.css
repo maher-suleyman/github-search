@@ -4,34 +4,65 @@
   align-items: center;
 }
 
+.headerTitle {
+  font-weight: 700;
+  font-size: 4rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 #github-container {
   display: flex;
 }
 
-ul {
-  list-style: none;
-  list-style-type: square;
+.userContainer {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px;
+  padding: 10px;
+  background-color: #e73c7e71;
+  border: 2px solid rgba(45, 0, 51, 0.849);
+  border-radius: 10px;
 }
 
-.circle_li {
-  list-style-type: circle;
+.userContainer img {
+  width: 130px;
+  height: auto;
+  margin-right: 10px;
 }
 
-.none_li {
-  list-style-type: none;
+.userContainer h2 {
+  color: rgb(248, 231, 231);
 }
 
-button {
-  font-weight: bold;
-  color: rgb(160, 47, 132);
-  width: 75px;
-  height: 20px;
+.userContainer a {
+  color: black;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-top: 5px;
 }
 
-button:focus {
-      background: #ea4fff4d;
+.userInfoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-button:focus {
-      background: #449970;
+/* Gradient background */
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

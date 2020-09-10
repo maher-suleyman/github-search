@@ -2,102 +2,91 @@
 function createUsersList (json) {
 
   json.items.forEach( user => {
+    
+    const result = document.createElement("h3");
+    const userContainer = document.createElement("div");result
+    userContainer.setAttribute("class", "userContainer");
+    const userInfoContainer = document.createElement("div");
+    userInfoContainer.setAttribute("class", "userInfoContainer");
+    const userTitle = document.createElement("h2");
+    const userAvatar = document.createElement("img");
+    const userReposBtn = document.createElement("div");
+    const userReposContainer = document.createElement("dev");
+    const userProfile = document.createElement("a");
+    userReposBtn.innerHTML = `
+      <button 
+        type="button" 
+        class="btn btn-info" 
+        style="width: 100px; height: 35px;" 
+        data-toggle="modal" data-target="#${user.login}Modal"
+      >Repositories</button>
+    `;
+    userReposContainer.innerHTML = `
+    <div class="modal fade" id="${user.login}Modal" role="dialog">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title text-left"><b>${user.login}</b>'s repositories</h4>
+          </div>
+          <div class="modal-body">
+            <ul id="${user.login}Repos" class="userReposList">
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" style="width: 100px; height: 35px;" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
 
-    // creating list for each user
-    let li1 = document.createElement("li");
-    let li2 = document.createElement("li");
-    let li3 = document.createElement("li");
-    let li4 = document.createElement("li");
-    let btn= document.createElement("button");
-    let img = document.createElement("img");
-    let anchor = document.createElement("a");
-    let br = document.createElement("br");
+    userReposBtn.addEventListener("click", () => {
+      getUserRepos(user.login, user.repos_url);
+    })
 
-    // Saving data to every user into a list
-    li1.innerHTML = `<b style="font-size: large">UserName: <span style="color:#449970">${user.login}</span>  </b>`;
-    img.setAttribute("src", `${user.avatar_url}`);
-    img.setAttribute("width", `${75}`);
-    li3.appendChild(img);
+    userTitle.innerHTML = user.login;
+    userAvatar.setAttribute("src", `${user.avatar_url}`);
+    userProfile.innerHTML = `go to <b>${user.login}</b> profile.`;
+    userProfile.setAttribute("href", `${user.html_url}`);
 
-    // creating link to user's profile
-    anchor.innerHTML = `go to <b>${user.login}</b> profile.`;
-    anchor.setAttribute("href", `${user.html_url}`);
-    li4.appendChild(anchor);
-
-    // setting up a button for user's repos
-    btn.textContent = "repos";
-    btn.addEventListener("click", function () {
-      showUserRepos(user.login, user.repos_url);
-    });
-
-    li2.classList.add("none_li");
-    li3.classList.add("none_li");
-    li4.classList.add("none_li");
-
-    // Appending children elements of user list
-    let ul = document.getElementById("user-list");
-    li2.appendChild(btn);
-    ul.appendChild(li1);
-    ul.appendChild(li2);
-    ul.appendChild(li3);
-    ul.appendChild(li4);
-    ul.appendChild(br);
-
+    userInfoContainer.appendChild(userTitle);
+    userInfoContainer.appendChild(userReposBtn);
+    userInfoContainer.appendChild(userReposContainer);
+    userInfoContainer.appendChild(userProfile);
+    userContainer.appendChild(userAvatar);
+    userContainer.appendChild(userInfoContainer);
+    let searchResultUL = document.getElementById("user-list");
+    searchResultUL.appendChild(userContainer);
+    console.log("result", result);
   });
 
 }
 
 
 // function to show a list of user's repos
-function showUserRepos (userName, reposURL) {
-
-  let repos = document.getElementById("repos-list");
-  repos.scrollIntoView(); // scrolling to user's repos list
-  repos.innerHTML = "";
+function getUserRepos(userTitle, reposURL) {
+  let userReposList = document.getElementById(`${userTitle}Repos`);
+  userReposList.innerHTML = "";
 
   fetch(reposURL)
-  .then(function(response) {
-    return response.json();})
-  .then( json => {
+    .then((response) => response.json())
+    .then((json) => {
+      function isEmpty(obj) {
+        return Object.keys(obj).length === 0;
+      }
 
-    function isEmpty (obj) {
-      return Object.keys(obj).length === 0;
-    }
-
-    if ( isEmpty(json) ) {
-
-      let liName = document.createElement("li");
-      liName.innerHTML=`<b>Repositories of <span style="color:#862C4B"><i>${userName}</i></span> :<b>`;
-      let ulRepos = document.createElement("ul");
-      let liRepo = document.createElement("li");
-      liRepo.classList.add("none_li");
-      liRepo.innerHTML = `<h3 style="color:#756d67">Sorry! this user has NO repos !!</h3>`;
-      ulRepos.appendChild(liRepo);
-      liName.appendChild(ulRepos);
-      repos.appendChild(liName);
-
-    } else {
-
-      let liName = document.createElement("li");
-      liName.innerHTML=`<b>Repositories of <span style="color:#862C4B"><i>${userName}</i></span> :<b>`;
-
-      // a loop to create list of all user's respos
-      json.forEach( repo => {
-        let ulRepos = document.createElement("ul");
-        let liRepo = document.createElement("li");
-        liRepo.classList.add("circle_li");
-        liRepo.innerHTML = repo.name;
-        ulRepos.appendChild(liRepo);
-        liName.appendChild(ulRepos);
-      });
-
-      repos.appendChild(liName);
-    }
-
-  });
-
+      if (isEmpty(json)) {
+        userReposList.innerHTML = `<h3>This user has NO repos!</h3>`;
+      } else {
+        const reposArray = [];
+        json.forEach( repo => {
+          const repoItem = document.createElement("li");
+          repoItem.innerHTML = repo.name;
+          userReposList.appendChild(repoItem);
+        });
+      }
+    });
 }
-
 
 // fetching users data of GitHub website 
 document.getElementById("github-form").addEventListener("submit", function(e){
@@ -105,7 +94,7 @@ document.getElementById("github-form").addEventListener("submit", function(e){
 
   // clearing previous search results
   document.getElementById("user-list").innerHTML = "";
-  document.getElementById("repos-list").innerHTML = "";
+  // document.getElementById("repos-list").innerHTML = "";
 
   let search = document.getElementById("search").value;
   let url = "https://api.github.com/search/users?q=" + search;

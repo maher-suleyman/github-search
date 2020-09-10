@@ -4,31 +4,35 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
   <meta http-equiv='X-UA-Compatible' content='ie=edge'/>
   <title>GitHub Search & APIs</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel='stylesheet' href='style.css'/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
   <div id='main'>
 
-    <h1>GitHub Search</h1>
+    <h1 class="headerTitle">GitHub Search</h1>
 
     <form id='github-form'>
       <input id='search' type='text' name='search'>
-      <input type='submit' name='submit'/>
+      <input class="btn btn-primary" type="submit" value="Search">
     </form>
 
+    <hr style="border: 1px solid #969696; margin-top: 0; width: 99.5%;"/>
+
     <div id='github-container'>
-      <ul id='user-list'>
+      <ul id='user-list' class="d-flex flex-wrap justify-content-around">
 
       </ul>
 
-      <ul id='repos-list'>
+      <!-- <ul id='repos-list'>
 
-      </ul>
+      </ul> -->
     </div>
 
     <script src="script.js"></script>
-
   </div>
-
 </body>
 </html>
