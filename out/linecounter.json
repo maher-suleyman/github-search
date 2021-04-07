@@ -1,0 +1,63 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "c:\\Users\\maher\\Desktop\\Front-end projects\\github-search",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2020-10-17 01:05:46",
+            "filesum": 4,
+            "codesum": 152,
+            "commentsum": 8,
+            "blanksum": 23,
+            "statistics": {
+                ".js": {
+                    "code": 64,
+                    "comment": 4,
+                    "blank": 7
+                },
+                ".css": {
+                    "code": 58,
+                    "comment": 1,
+                    "blank": 9
+                },
+                ".md": {
+                    "code": 2,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".html": {
+                    "code": 28,
+                    "comment": 3,
+                    "blank": 7
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 7,
+                    "code": 28,
+                    "comment": 3,
+                    "filename": "index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 7,
+                    "code": 64,
+                    "comment": 4,
+                    "filename": "script.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 58,
+                    "comment": 1,
+                    "filename": "style.css"
+                }
+            ]
+        }
+    ]
+}

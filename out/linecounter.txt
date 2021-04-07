@@ -1,0 +1,24 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2020-10-17 01:05:46
+count workspace : c:\Users\maher\Desktop\Front-end projects\github-search
+total files : 4
+total code lines : 152
+total comment lines : 8
+total blank lines : 23
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |            .js|             64|              4|              7|     42|
+   |           .css|             58|              1|              9|     38|
+   |            .md|              2|              0|              0|    1.3|
+   |          .html|             28|              3|              7|     18|
+   -------------------------------------------------------------------------
+index.html, code is 28, comment is 3, blank is 7.
+README.md, code is 2, comment is 0, blank is 0.
+script.js, code is 64, comment is 4, blank is 7.
+style.css, code is 58, comment is 1, blank is 9.
+===============================================================================
